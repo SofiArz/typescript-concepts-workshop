@@ -1,20 +1,24 @@
 import { useState } from 'react'
 
 interface Props {
-    initialValue?: number,
-    clicks?: number,
+    initialValue?: number,  
+}
+
+interface CounterState {
+  counter: number,
+  clicks: number,
 }
 
 export const CounterBy = ({ initialValue = 5 } : Props) => {
-    const [counterState, setCounter] = useState({ 
+    const [counterState, setCounter] = useState<CounterState>({ 
       counter: initialValue,
       clicks: 0,
     })
 
     const handleClick = (value = 1) => {
-        setCounter(prev => ({
-          counter: prev.counter + value,
-          clicks: prev.clicks + 1,
+        setCounter( ({clicks, counter}) => ({
+          counter: counter + value,
+          clicks:  clicks + 1,
         })
         )
     }
